@@ -3,6 +3,7 @@
 #include <time.h>
 #define N 10
 #define K 10
+#define N2 10
 void fill(int a[], int n)
 {
 	int i;
@@ -74,6 +75,52 @@ void countSort(int a[], int n)
 			a[idx++] = i;
 	}
 }
+void quick_split(int a[], int *i, int *j, int p)
+{
+	do
+	{
+		while (a[*i] < p)
+			(*i)++;
+		while (a[*j] > p)
+			(*j)--;
+		if (i <= j)
+		{
+			int tmp = a[*i];
+			a[*i] = a[*j];
+			a[*j] = tmp;
+		}
+	} while (*i < *j);
+}
+
+void quick_sort(int a[], int n1, int n2)
+{
+	int m;
+	int i = n1; int j = n2;
+	m = (n1 + n2) / 2;
+	quick_split(a, &i, &j, a[m]);
+	if (i < n2)
+		quick_sort(a, n2, i);
+}
+void merge_sort(int a[], int l, int r)
+{
+	int m;
+	if (l >= r)
+		return;
+	m = (l + r) / 2;
+	merge_sort(a, l, m);
+	merge_sort(a, m + 1, r);
+	merge(a, l, m, r);
+}
+void merge(int a[], int l, int m, int r)
+{
+	int i, j, s;
+	while ((i < m) && (j < r))
+	{
+		//ÄÎÏÈÑÀÒÜ!
+	}
+
+
+}
 void output(int a[], int n)
 {
 	int i;
@@ -107,6 +154,11 @@ void main()
 		break;
 	case 4:
 		countSort(a, N);
+		printf("Sort massiv: ");
+		output(a, N);
+		break;
+	case 5:
+		quick_sort(a, N, N2);
 		printf("Sort massiv: ");
 		output(a, N);
 		break;
