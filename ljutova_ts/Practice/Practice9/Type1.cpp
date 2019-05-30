@@ -10,18 +10,18 @@ Type1::Type1()
 
 Type1::Type1(string _des, Date _date)
 {
-	description = _des;
-	date = _date;
+    description = _des;
+    date = _date;
 }
 
 Type1::~Type1()
 {
-	description = nullptr;
+    description = nullptr;
 }
 
 void Type1::Print()
 {
-	cout << date <<  "Your task is " <<  description << endl;
+    cout << date <<  "Your task is: " <<  description << endl;
 }
 
 

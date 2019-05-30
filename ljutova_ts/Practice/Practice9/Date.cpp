@@ -1,14 +1,14 @@
 #include "Date.h" 
 #include "Exception.h" 
 #include <iostream> 
+
 using namespace std;
 
 Date::Date()
 {
-	d = 1;
-	m = 1;
-	y = 1;
-
+    d = 1;
+    m = 1;
+    y = 1;
 }
 
 Date::Date(int _d, int _m, int _y)

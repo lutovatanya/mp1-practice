@@ -1,6 +1,7 @@
 #include "Type2.h" 
 #include <iostream> 
 #include "Task.h"
+
 using namespace std;
 
 Type2::Type2(string _des, Date _date, Time _t1, Time _t2)

@@ -4,6 +4,7 @@
 #include "Type2.h"
 #include <iostream> 
 #include <fstream>
+
 using namespace std;
 
 Todolist::Todolist()
@@ -22,23 +23,23 @@ void Todolist::read()
 	ifstream f("ToDoList.txt");
 	if (!f.is_open())
 		throw Exception("File is not open");
-	f >> n; //считываем слова их
+	f >> n; //считываем слова из файла
 	task = new Task*[n];
 	for (int i = 0; i < n; i++)
 	{
 		f >> type;
 		if (type == 1)
 		{
-			f >> date;
-			getline(f, description); //считывание
-			task[i] = new Type1(description, date);
+		    f >> date;
+		    getline(f, description); //считывание
+		    task[i] = new Type1(description, date);
 		}
 	
 		else if (type == 2)
 		{
-			f >> date >> t1 >> t2;
-			getline(f, description);
-			task[i] = new Type2(description, date, t1, t2);
+		    f >> date >> t1 >> t2;
+		    getline(f, description);
+		    task[i] = new Type2(description, date, t1, t2);
 		}
 		else throw Exception("You type is not correct");
 	}

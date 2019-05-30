@@ -8,13 +8,13 @@ using namespace std;
 
 class Todolist
 {
-	Task **task;
-	int n;
+    Task **task;
+    int n;
 public:
-	Todolist();
-	~Todolist();
-	void read();
-	void print(Date);
+    Todolist();
+    ~Todolist();
+    void read();
+    void print(Date);
 };
 
 #endif

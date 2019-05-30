@@ -5,11 +5,10 @@
 class Type1 : public Task
 {
 public:
-	Type1();
-	Type1(string, Date);
-	~Type1();
-
-	void Print();
+    Type1();
+    Type1(string, Date);
+    ~Type1();
+    void Print();
 };
 
 #endif
