@@ -8,13 +8,13 @@ using namespace std;
 class Exception
 {
 private:
-	string m;
+    string m;
 public:
-	Exception(string _m) : m(_m) {};
-	void Print()
-	{
-		cout << " Error: " << m << endl;
-	}
+    Exception(string _m) : m(_m) {};
+    void Print()
+    {
+	    cout << " Error: " << m << endl;
+    }
 };
 
 #endif
