@@ -3,7 +3,7 @@ void main()
 {
     double V1, V2, V3, V4, V5, m1, m2, m3, m4, m5, M;
     int f;
-    double l1 = 0.005, l2 = 0.015, l3 = 0.01; //Ñ‚Ð¾Ð»Ñ‰Ð¸Ð½Ð° Ð² Ð¼ÐµÑ‚Ñ€Ð°Ñ…
+    double l1 = 0.005, l2 = 0.015, l3 = 0.01; //толщина в метрах
     double h, w, d, p1, p2, p3;
     printf("Enter h (From 1.8 to 2):");
     scanf("%lf", &h);
