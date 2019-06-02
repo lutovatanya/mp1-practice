@@ -1,74 +1,74 @@
-#include <stdio.h> 
+п»ї#include <stdio.h> 
 #include <time.h> 
 #include <stdlib.h> 
 #include <locale.h>
 
 void main()
 {
-	int n, ch, r, min = 1, max = 1000, count = 0;
-	char z[3];
-	setlocale(LC_ALL, "Russian");
+    int n, ch, r, min = 1, max = 1000, count = 0;
+    char z[3];
+    setlocale(LC_ALL, "Russian");
 
-	printf("Режимы работы:\n");
-	printf("1-Компьютер загадывает число\n");
-	printf("2-Пользователь загадывает число\n");
-	printf("Выберите режим: ");
-	scanf("%d", &r);
-	if (r == 1)
-	{
-		srand((unsigned int)time(0));
-		ch = rand() % 1000 + 1;
-		while (1)
-		{
-			do
-			{
-				printf("Введите число: \n");
-				scanf("%d", &n);
-				if ((n <= 0) || (n >= 1000))
-					printf("Ошибка.Число должно быть в диапазоне 1 - 1000 \n");
-			} while ((n <= 0) || (n >= 1000));
-			count++;
-			if (n == ch)
-			{
-				printf("Поздравляю! Вы угадали число\n");
-				printf("Число попыток: %d \n", count);
-				return;
-			}
-			if (n > ch)
-				printf("Введенное число больше загаданного \n");
-			else
-				printf("Введенное число меньше загаданного \n");
-		}
-	}
+    printf("Р РµР¶РёРјС‹ СЂР°Р±РѕС‚С‹:\n");
+    printf("1-РљРѕРјРїСЊСЋС‚РµСЂ Р·Р°РіР°РґС‹РІР°РµС‚ С‡РёСЃР»Рѕ\n");
+    printf("2-РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ Р·Р°РіР°РґС‹РІР°РµС‚ С‡РёСЃР»Рѕ\n");
+    printf("Р’С‹Р±РµСЂРёС‚Рµ СЂРµР¶РёРј: ");
+    scanf("%d", &r);
+    if (r == 1)
+    {
+	    srand((unsigned int)time(0));
+	    ch = rand() % 1000 + 1;
+	    while (1)
+	    {
+		    do
+		    {
+			    printf("Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ: \n");
+			    scanf("%d", &n);
+			    if ((n <= 0) || (n >= 1000))
+				    printf("РћС€РёР±РєР°.Р§РёСЃР»Рѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ 1 - 1000 \n");
+		    } while ((n <= 0) || (n >= 1000));
+		    count++;
+		    if (n == ch)
+		    {
+			    printf("РџРѕР·РґСЂР°РІР»СЏСЋ! Р’С‹ СѓРіР°РґР°Р»Рё С‡РёСЃР»Рѕ\n");
+			    printf("Р§РёСЃР»Рѕ РїРѕРїС‹С‚РѕРє: %d \n", count);
+			    return;
+		    }
+		    if (n > ch)
+			    printf("Р’РІРµРґРµРЅРЅРѕРµ С‡РёСЃР»Рѕ Р±РѕР»СЊС€Рµ Р·Р°РіР°РґР°РЅРЅРѕРіРѕ \n");
+		    else
+			    printf("Р’РІРµРґРµРЅРЅРѕРµ С‡РёСЃР»Рѕ РјРµРЅСЊС€Рµ Р·Р°РіР°РґР°РЅРЅРѕРіРѕ \n");
+	    }
+    }
 	else if (r == 2)
-		do
-		{
-			printf("Введите число: \n");
-			scanf("%d", &n);
-			if ((n <= 0) || (n >= 1000))
-				printf("Ошибка.Число должно быть в диапазоне 1 - 1000 \n");
-		} while ((n <= 0) || (n >= 1000));
-		while (z[0] != '=')
-		{
-			srand((unsigned int)time(0));
-			ch = rand() % (max - min + 1) + min;
-			printf("Компьютер: %d \n", ch);
-			printf("Введите (>),(<),(=) заданное число и отгадки компьютера\n");
-			scanf("%9s", &z);
-			switch (z[0])
-			{
-			case '>': min = ch;
-				count++;
-				break;
-			case '<': max = ch;
-				count++;
-				break;
-			case '=':count++;
-				printf("Компьютер угадал число! \n");
-				printf("Число попыток : %d \n", count);
-				break;
-			default: printf("Введено неккоректное значение");
-				break;
-			}
-		}
+    do
+    {
+	    printf("Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ: \n");
+	    scanf("%d", &n);
+	    if ((n <= 0) || (n >= 1000))
+		    printf("РћС€РёР±РєР°.Р§РёСЃР»Рѕ РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ РІ РґРёР°РїР°Р·РѕРЅРµ 1 - 1000 \n");
+    } while ((n <= 0) || (n >= 1000));
+    srand((unsigned int)time(0));
+    while (z[0] != '=')
+    {
+	    ch = rand() % (max - min + 1) + min;
+	    printf("РљРѕРјРїСЊСЋС‚РµСЂ: %d \n", ch);
+	    printf("Р’РІРµРґРёС‚Рµ (>),(<),(=) Р·Р°РґР°РЅРЅРѕРµ С‡РёСЃР»Рѕ Рё РѕС‚РіР°РґРєРё РєРѕРјРїСЊСЋС‚РµСЂР°\n");
+	    scanf("%s", &z);
+	    switch (z[0])
+	    {
+	    case '>': min = ch;
+		    count++;
+		    break;
+	    case '<': max = ch;
+		    count++;
+		    break;
+	    case '=':count++;
+		    printf("РљРѕРјРїСЊСЋС‚РµСЂ СѓРіР°РґР°Р» С‡РёСЃР»Рѕ! \n");
+		    printf("Р§РёСЃР»Рѕ РїРѕРїС‹С‚РѕРє : %d \n", count);
+		    break;
+	    default: printf("Р’РІРµРґРµРЅРѕ РЅРµРєРєРѕСЂРµРєС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ \n");
+		    break;
+	    }
+    }
 }
