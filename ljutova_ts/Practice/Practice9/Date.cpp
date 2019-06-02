@@ -1,5 +1,4 @@
 #include "Date.h" 
-#include "Exception.h" 
 #include <iostream> 
 
 using namespace std;
@@ -14,32 +13,22 @@ Date::Date()
 Date::Date(int _d, int _m, int _y)
 {
 	if (_y <= 0)
-	{
-		throw Exception("This year does not exist");
-	}
+		throw Date1();
 	if ((_m <= 0) || (_m > 12))
-	{
-		throw Exception("This month does not exist");
-	}
+        throw Date1();
 	if ((_d <= 0) || (_d > 31))
-	{
-	throw Exception("This day does not exist");
-	}
+        throw Date1();
 	if (_m == 2)
 	{
 		if (((_y % 4) == 0) || ((_y % 400) == 0) || ((_y % 100) != 0))
 		{
 			if ((_d <= 0) || (_d > 29))
-			{
-				throw Exception("This date does not exist");
-			}
+                throw Date1();
 		}
 		else
 		{
 			if ((_d <= 0) || (_d > 28))
-			{
-				throw Exception("This date does not exist");
-			}
+                throw Date1();
 		}
 	}
 
@@ -83,12 +72,6 @@ const Date& Date::operator=(const Date& x)
 	return *this;
 }
 
-void Date::Print()
-{
-	cout << "Your date: " << endl;
-	cout << d << "." << m << "." << y << endl;
-}
-
 ostream & operator<<(ostream & o, const Date & x)
 {
 	o << x.d << x.m << x.y << " ";
@@ -99,4 +82,9 @@ istream & operator>>(istream & o, Date & x)
 {
 	o >> x.d >> x.m >> x.y;
 	return o;
+}
+
+const char* Date1::what() const
+{
+    return what_str.c_str();
 }

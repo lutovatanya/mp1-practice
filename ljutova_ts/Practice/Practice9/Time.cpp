@@ -1,5 +1,4 @@
 ﻿#include "Time.h" 
-#include "Exception.h" 
 #include <iostream> 
 
 using namespace std;
@@ -14,11 +13,11 @@ Time::Time(int _h, int _min)
 {
 	if ((_h < 0) || (_h > 24))
 	{
-	    throw Exception("This hours does not exist");
+	    throw Time1();
 	}
 	if ((_min < 0) || (_min > 60))
 	{
-	    throw Exception("This minutes does not exist");
+	    throw Time1();
 	}
 	
     h = _h;
@@ -50,15 +49,10 @@ const Time& Time::operator=(const Time& x)
     return *this;
 }
 
-void Time::Print()
-{
-    cout << "Your time: " << endl;
-    cout << h << ":" << min << endl;
-}
 
 ostream & operator<<(ostream & o, const Time & x)
 {
-    o << x.h << x.min << " ";
+    o << x.h << ":" << x.min << " ";
     return o;
 }
 
@@ -66,4 +60,9 @@ istream & operator>>(istream & o, Time & x)
 {
     o >> x.h >> x.min;
     return o;
+}
+
+const char* Time1::what() const
+{
+    return what_str.c_str();
 }

@@ -1,5 +1,4 @@
 ﻿#include "todolist.h" 
-#include "Exception.h"
 #include "Type1.h"
 #include "Type2.h"
 #include <iostream> 
@@ -12,7 +11,7 @@ Todolist::Todolist()
 	n = 0;
 }
 
-void Todolist::read()
+void Todolist::read(const string namef)
 {
 	string s;
 	string description;
@@ -20,9 +19,10 @@ void Todolist::read()
 	Date date;
 	Time t1;
 	Time t2;
-	ifstream f("ToDoList.txt");
+    ifstream f;
+    f.open(namef);
 	if (!f.is_open())
-		throw Exception("File is not open");
+		throw T1();
 	f >> n; //считываем слова из файла
 	task = new Task*[n];
 	for (int i = 0; i < n; i++)
@@ -41,7 +41,7 @@ void Todolist::read()
 		    getline(f, description);
 		    task[i] = new Type2(description, date, t1, t2);
 		}
-		else throw Exception("You type is not correct");
+		else throw T2();
 	}
 	f.close();
 }
@@ -61,11 +61,24 @@ void Todolist::print(Date _d)
 		}
 	}
 	if (fl == 0)
-		throw Exception("You haven`t got tasks on this day");
+		throw T3();
 }
 
 Todolist::~Todolist()
 {
 	n = 0;
 	delete[] task;
+}
+
+const char* T1::what() const
+{
+    return what_str.c_str();
+}
+const char* T2::what() const
+{
+    return what_str.c_str();
+}
+const char* T3::what() const
+{
+    return what_str.c_str();
 }

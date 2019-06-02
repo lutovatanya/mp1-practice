@@ -47,9 +47,6 @@
     <ClInclude Include="Time.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Exception.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="Type1.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
