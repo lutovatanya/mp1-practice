@@ -91,11 +91,11 @@ void insertSort(ULONGLONG *fileSize, int *fileIdx, int n)
 	ULONGLONG tmp;
 	for (i = 1; i < n; i++)
 	{
-		tmp = fileSize[i];
+		tmp = fileIdx[i];
 		j = i - 1;
-		while ((j >= 0) && (fileSize[j] > tmp))
+		while ((j >= 0) && (fileSize[fileIdx[j]] > fileSize[tmp]))
 		{
-			fileSize[j + 1] = fileSize[j];
+			fileIdx[j + 1] = fileIdx[j];
 			j--;
 		}
 	}
@@ -153,7 +153,7 @@ void countSort(ULONGLONG *fileSize, int *fileIdx, int n)
 	free(count);
 }
 // быстрая сортировка (дополнительная функция)
-void quick_split(ULONGLONG *fileSize, int fileIdx, int *i, int *j, int p)
+void quick_split(ULONGLONG *fileSize, int *fileIdx, int *i, int *j, int p)
 {
 	ULONGLONG tmp;
 	do
@@ -164,9 +164,9 @@ void quick_split(ULONGLONG *fileSize, int fileIdx, int *i, int *j, int p)
 			(*j)--;
 		if (*i <= *j)
 		{
-			tmp = fileSize[*i];
-			fileSize[*i] = fileSize[*j];
-			fileSize[*j] = tmp;
+			tmp = fileIdx[*i];
+			fileIdx[*i] = fileIdx[*j];
+			fileIdx[*j] = tmp;
 			(*i)++;
 			(*j)--;
 		}
@@ -241,32 +241,41 @@ void main()
 	do
 	{
 		scanf("%d", &number);
-		begin = clock();
-
-		switch (number)
-		{
-		case 1:
-			chooseSort(filesSize, filesIndex, N);
-			break;
-		case 2:
-			insertSort(filesSize, filesIndex, N);
-			break;
-		case 3:
-			bubbleSort(filesSize, filesIndex, N);
-			break;
-		case 4:
-			countSort(filesSize, filesIndex, N);
-			break;
-		case 5:
-			quick_sort(filesSize, filesIndex, 0, (N - 1));
-			break;
-		case 6:
-			merge_sort(filesSize, filesIndex, 0, (N - 1));
-			break;
-		default:
-			printf("Сортировка не найдена. Исходные файлы: \n ");
-		}
-		end = clock();
+        switch (number)
+        {
+        case 1:
+            begin = clock();
+            chooseSort(filesSize, filesIndex, N);
+            end = clock();
+            break;
+        case 2:
+            begin = clock();
+            insertSort(filesSize, filesIndex, N);
+            end = clock();
+            break;
+        case 3:
+            begin = clock();
+            bubbleSort(filesSize, filesIndex, N);
+            end = clock();
+            break;
+        case 4:
+            begin = clock();
+            countSort(filesSize, filesIndex, N);
+            end = clock();
+            break;
+        case 5:
+            begin = clock();
+            quick_sort(filesSize, filesIndex, 0, (N - 1));
+            end = clock();
+            break;
+        case 6:
+            begin = clock();
+            merge_sort(filesSize, filesIndex, 0, (N - 1));
+            end = clock();
+            break;
+        default:
+            printf("Сортировка не найдена. Исходные файлы: \n ");
+        }
 		alltime = (double)(end - begin) / CLOCKS_PER_SEC;
 		OutputFiles(filesSize, filesName, filesIndex, N);
 		printf("\n Time: %.5lf сек \n", alltime);
