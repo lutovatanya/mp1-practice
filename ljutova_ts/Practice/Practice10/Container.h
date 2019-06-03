@@ -2,7 +2,6 @@
 #define _CONTAINER_H_ 
 
 #include <iostream> 
-#include "Exception.h" 
 
 using namespace std;
 
@@ -33,6 +32,14 @@ public:
 		}
 		return o;
 	}
+    friend std::istream& operator >> (std::istream & o, const Container& x)
+    {
+        for (int i = 0; i < x.n; i++)
+        {
+            cin >> x[i] >> " ";
+        }
+        return o;
+    }
 };
 
 template <typename T, int maxsize>
@@ -95,7 +102,7 @@ void Container <T, maxsize>::Add(T a)
 {
 	if (isFull()) //Проверка на полноту 
 	{
-		throw Exception("Your container is full");
+		throw C1();
 	}
 	arr[n] = a;
 	n++;
@@ -106,7 +113,7 @@ void Container <T, maxsize>::Delete1(int idx)
 {
 	if (isEmpty()) //Проверка на пустоту 
 	{
-		throw Exception("Your container is empty");
+		throw C3();
 	}
 	arr[idx] = arr[n - 1]; //Замена найденного элемента на последний
 	n--;
@@ -123,7 +130,7 @@ T& Container<T, maxsize>::operator[](int i)
 {
 	if ((i > maxsize) || (i < 0)) //Проверка на выход за границы 
 	{
-		throw Exception("Array bounds");
+		throw C2();
 	}
 	return arr[i];
 };
@@ -133,7 +140,7 @@ const T& Container<T, maxsize>::operator[](int i) const
 {
 	if ((i > maxsize) || (i < 0)) //Проверка на выход за границы 
 	{
-		throw Exception("Array bounds");
+		throw C2();
 	}
 	return arr[i];
 };
@@ -155,7 +162,7 @@ public:
     int Find(T* a)const;
     void Add(T* a);
     void Delete1(T* a);
-    T* operator[](int);
+    T*& operator[](int);
     const T* operator[](int) const;
 
     friend std::ostream& operator << (std::ostream & o, const Container& x)
@@ -165,6 +172,14 @@ public:
 		    cout << *x[i] << " ";
 	    }
 	    return o;
+    }
+    friend std::istream& operator >> (std::istream & o, const Container& x)
+    {
+        for (int i = 0; i < x.n; i++)
+        {
+            cin >> x[i] >> " ";
+        }
+        return o;
     }
 };
 
@@ -230,7 +245,7 @@ void Container <T*, maxsize>::Add(T* a)
 {
     if (isFull())
     {
-	    throw Exception("Your container is full");
+	    throw C1();
     }
     arr[n] = new T; //Создаем пустой указатель нужного размера 
     *arr[n] = *a; //Копируем содержимое туда, куда указывает пустой 
@@ -242,7 +257,7 @@ void Container <T*, maxsize>::Delete1(T* a)
 {
     if (isEmpty())
     {
-	    throw Exception("Your container is empty");
+	    throw C3();
     }
     *arr[Find(a)] = *arr[n - 1];
     delete arr[--n]; //Освобождаем память 
@@ -250,11 +265,11 @@ void Container <T*, maxsize>::Delete1(T* a)
 };
 
 template<typename T, int maxsize>
-T* Container<T*, maxsize>::operator[](int i)
+T*& Container<T*, maxsize>::operator[](int i)
 {
     if ((i > maxsize) || (i < 0))
     {
-	    throw Exception("Array bounds");
+	    throw C2();
     }
     return arr[i];
 };
@@ -264,9 +279,30 @@ const T* Container<T*, maxsize>::operator[](int i) const
 {
     if ((i > maxsize) || (i < 0))
     {
-	    throw Exception("Array bounds");
+	    throw C2();
     }
     return arr[i];
+};
+
+class C1 : std::exception
+{
+    const std::string what_str = "Your container is full";
+public:
+    const char* what() const;
+};
+
+class C2 : std::exception
+{
+    const std::string what_str = "Out of bounds";
+public:
+    const char* what() const;
+};
+
+class C3 : std::exception
+{
+    const std::string what_str = "Your container is empty";
+public:
+    const char* what() const;
 };
 
 #endif

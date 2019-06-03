@@ -1,5 +1,4 @@
 ﻿#include "Container.h" 
-#include "Exception.h" 
 
 void main()
 {
@@ -13,9 +12,9 @@ void main()
 	    cout << "the contents of the container1: " << Cont1 << endl;
 	    cout << "the contents of the container2: " << Cont2 << endl;
     }
-    catch (Exception e)
+    catch (C2)
     {
-	    e.Print();
+	    cout << "Out of bounds";
     }
 
     try
@@ -26,9 +25,9 @@ void main()
 	    Cont2.Delete(2.2);
 	    cout << "Container 2 - num 2.2: " << Cont2 << endl;
     }
-    catch (Exception e)
+    catch (C3)
     {
-	    e.Print();
+        cout << "Your container is empty";
     }
 
     try
@@ -39,9 +38,9 @@ void main()
 	    Cont2.Add(9.9);
 	    cout << "Container 2 + num 9.9: " << Cont2 << endl;
     }
-    catch (Exception e)
+    catch (C1)
     {
-	    e.Print();
+        cout << "Your container is full";
     }
 
     int *arr11[5];
@@ -60,9 +59,9 @@ void main()
 	    cout << "the contents of the container1`: " << Cont11 << endl;
 	    cout << "the contents of the container2`: " << Cont22 << endl;
     }
-    catch (Exception e)
+    catch (C2)
     {
-	    e.Print();
+        cout << "Out of bounds";
     }
 
     try
@@ -78,9 +77,9 @@ void main()
 	    Cont11.Add(b1);
 	    cout << "Container 1` + num 1: " << Cont11 << endl;
     }
-    catch (Exception e)
+    catch (C1)
     {
-	    e.Print();
+        cout << "Your container is full";
     }
     try
     {
@@ -96,8 +95,8 @@ void main()
 	    Cont22.Delete1(a1);
 	    cout << "Container 2` - num 2.2: " << Cont22 << endl;
     }
-    catch (Exception e)
+    catch (C3)
     {
-	    e.Print();
+        cout << "Your container is empty";
     }
 }
